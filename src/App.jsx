@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { Form, Input, Button, InputNumber, Card, Typography, notification } from 'antd';
+import { Form, Input, Button, InputNumber, Card, Typography, notification, Row, Col } from 'antd';
 import axios from 'axios';
 import SignatureCanvas from 'react-signature-canvas';
 import logo from "./assets/logo.jpg"; // Ruta del logo
@@ -58,10 +58,14 @@ const AcuseForm = () => {
   };
 
   return (
-    <div style={{ padding: '50px', display: 'flex', justifyContent: 'center' }}>
-      
+    <div style={{ padding: '20px', display: 'flex', justifyContent: 'center' }}>
       <Card
-        style={{ width: 500, borderRadius: '10px', boxShadow: '0 4px 12px rgba(0,0,0,0.1)' }}
+        style={{
+          width: '100%',
+          maxWidth: '500px',
+          borderRadius: '10px',
+          boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
+        }}
         title={<Title level={3} style={{ textAlign: 'center', margin: 0 }}>Formulario de Acuse de Recibo</Title>}
       >
         <div style={{ textAlign: "center", marginBottom: "20px" }}>
@@ -80,52 +84,74 @@ const AcuseForm = () => {
             email: "josafat30000@gmail.com"
           }}
         >
-          <Form.Item label="Destinatario" name="recipient">
-            <Input />
-          </Form.Item>
+          <Row gutter={[16, 16]}>
+            <Col span={24}>
+              <Form.Item label="Destinatario" name="recipient">
+                <Input />
+              </Form.Item>
+            </Col>
 
-          <Form.Item label="Empresa" name="company">
-            <Input />
-          </Form.Item>
+            <Col span={24}>
+              <Form.Item label="Empresa" name="company">
+                <Input />
+              </Form.Item>
+            </Col>
 
-          <Form.Item label="Producto" name="product">
-            <Input />
-          </Form.Item>
+            <Col span={24}>
+              <Form.Item label="Producto" name="product">
+                <Input />
+              </Form.Item>
+            </Col>
 
-          <Form.Item label="Cantidad" name="qty">
-            <InputNumber min={1} style={{ width: '100%' }} />
-          </Form.Item>
+            <Col span={24}>
+              <Form.Item label="Cantidad" name="qty">
+                <InputNumber min={1} style={{ width: '100%' }} />
+              </Form.Item>
+            </Col>
 
-          <Form.Item label="Concepto" name="concept">
-            <Input />
-          </Form.Item>
+            <Col span={24}>
+              <Form.Item label="Concepto" name="concept">
+                <Input />
+              </Form.Item>
+            </Col>
 
-          <Form.Item label="Correo Electrónico" name="email">
-            <Input />
-          </Form.Item>
+            <Col span={24}>
+              <Form.Item label="Correo Electrónico" name="email">
+                <Input />
+              </Form.Item>
+            </Col>
 
-          {/* 📝 Observaciones */}
-          <Form.Item label="Observaciones" name="observations">
-            <Input.TextArea rows={3} placeholder="Añadir comentarios adicionales..." />
-          </Form.Item>
+            {/* 📝 Observaciones */}
+            <Col span={24}>
+              <Form.Item label="Observaciones" name="observations">
+                <Input.TextArea rows={3} placeholder="Añadir comentarios adicionales..." />
+              </Form.Item>
+            </Col>
 
-          {/* 🖊️ Firma del Receptor */}
-          <Title level={5}>Firma del Receptor</Title>
-          <SignatureCanvas ref={firmaReceptorRef} canvasProps={{ width: 450, height: 100, className: 'sigCanvas' }} />
-          <Button onClick={() => handleSaveSignature(firmaReceptorRef, setFirmaReceptor)} style={{ margin: '5px' }}>Guardar Firma</Button>
-          <Button onClick={() => handleClearSignature(firmaReceptorRef, setFirmaReceptor)} danger>Limpiar</Button>
+            {/* 🖊️ Firma del Receptor */}
+            <Col span={24}>
+              <Title level={5}>Firma del Receptor</Title>
+              <SignatureCanvas ref={firmaReceptorRef} canvasProps={{ width: 450, height: 100, className: 'sigCanvas' }} />
+              <Button onClick={() => handleSaveSignature(firmaReceptorRef, setFirmaReceptor)} style={{ margin: '5px' }}>Guardar Firma</Button>
+              <Button onClick={() => handleClearSignature(firmaReceptorRef, setFirmaReceptor)} danger>Limpiar</Button>
+            </Col>
 
-          {/* 🖊️ Firma del Emisor */}
-          <Title level={5}>Firma del Emisor</Title>
-          <SignatureCanvas ref={firmaEmisorRef} canvasProps={{ width: 450, height: 100, className: 'sigCanvas' }} />
-          <Button onClick={() => handleSaveSignature(firmaEmisorRef, setFirmaEmisor)} style={{ margin: '5px' }}>Guardar Firma</Button>
-          <Button onClick={() => handleClearSignature(firmaEmisorRef, setFirmaEmisor)} danger>Limpiar</Button>
+            {/* 🖊️ Firma del Emisor */}
+            <Col span={24}>
+              <Title level={5}>Firma del Emisor</Title>
+              <SignatureCanvas ref={firmaEmisorRef} canvasProps={{ width: 450, height: 100, className: 'sigCanvas' }} />
+              <Button onClick={() => handleSaveSignature(firmaEmisorRef, setFirmaEmisor)} style={{ margin: '5px' }}>Guardar Firma</Button>
+              <Button onClick={() => handleClearSignature(firmaEmisorRef, setFirmaEmisor)} danger>Limpiar</Button>
+            </Col>
 
-          <Form.Item>
-            <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
-              Enviar Acuse
-            </Button>
-          </Form.Item>
+            <Col span={24}>
+              <Form.Item>
+                <Button type="primary" htmlType="submit" style={{ width: '100%' }}>
+                  Enviar Acuse
+                </Button>
+              </Form.Item>
+            </Col>
+          </Row>
         </Form>
       </Card>
     </div>
